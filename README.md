@@ -101,6 +101,54 @@ go run main.go time  now
 go run main.go time calc -c="2029-09-04 12:02:33" -d=-2h
 输出结果: 2029-09-04 10:02:33, 1883210553
 
+```
 
+## SQL 语句到结构体的转换
+### 验证
+```go
+
+go run main.go sql struct --username root --password root --db=blog_service --table "blog_tag"
+type BlogTag struct {
+  //
+创建人
+          CreatedBy
+        string  `json:"created_by"`
+  //
+创建时间
+          CreatedOn
+        int32  `json:"created_on"`
+  //
+删除时间
+          DeletedOn
+        int32  `json:"deleted_on"`
+  //
+主键
+          Id
+        int32  `json:"id"`
+  //
+是否删除 0 为未删除，1为已删除
+          IsDel
+        int8  `json:"is_del"`
+  //
+修改人
+          ModifiedBy
+        string  `json:"modified_by"`
+  //
+修改时间
+          ModifiedOn
+        int32  `json:"modified_on"`
+  //
+标签名称
+          Name
+        string  `json:"name"`
+  //
+状态0 为禁用， 1 为启用
+          State
+        int8  `json:"state"`
+}
+
+func (model BlogTag) TableName() string {
+        return "blog_tag"
+}
 
 ```
