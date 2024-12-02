@@ -42,3 +42,65 @@ go run main.go word -s=XiaoWei -m=5
 输出结果: xiao_wei
 
 ```
+
+## 便捷的时间工具， 
+
+> 格式化时间
+
+### 验证 
+
+```go
+go run main.go time  duration -h
+
+时间格式处理
+
+Usage:
+   time [flags]
+   time [command]
+
+Available Commands:
+  calc        计算所需时间
+  now         获取当前时间
+
+Flags:
+  -h, --help   help for time
+
+Use " time [command] --help" for more information about a command.
+
+
+// 查看命令介绍
+go run main.go time now -h
+获取当前时间
+
+Usage:
+   time now [flags]
+
+Flags:
+  -h, --help   help for now
+
+go run main.go time calc -h
+计算所需时间
+
+Usage:
+   time calc [flags]
+
+Flags:
+  -c, --calculate string   需要计算的时间，有效单位为时间戳或已格式化后的时间
+  -d, --duration string    持续时间，有效时间单位为"ns", "us"(or "us"), "ms", "s", "m", "h"
+  -h, --help               help for calc
+
+// 获取当前时间和时间戳
+go run main.go time  now
+输出结果: 2024-12-02 16:37:53, 1733128673
+
+// 获取指定时间往后5分钟的时间和时间戳
+>go run main.go time calc -c="2029-09-04 12:02:33" -d=5m
+输出结果: 2029-09-04 12:07:33, 1883218053
+
+// 获取指定时间往前2小时的时间和时间戳
+go run main.go time calc -c="2029-09-04 12:02:33" -d=-2h
+输出结果: 2029-09-04 10:02:33, 1883210553
+
+
+
+```
